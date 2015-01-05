@@ -1,0 +1,62 @@
+<?php 
+$form_attributes = array(
+	'name'	=> 'signIn',
+        'id'    => 'signIn',
+	'class'	=> 'forms'
+);
+$email_input = array(
+	'name'	=> 'login_email',
+	'class'	=> 'error',
+        'id'    => 'login_email',
+        //'required' => 'required',
+        'value' => set_value('login_email'),
+        'type'  => 'text'
+);
+$pass_input = array(
+        'type'	   => 'password',
+	'name'	   => 'login_password',
+	'class'	   => 'error',
+        'id'       => 'login_password',
+        //'required' => 'required',
+        'value' => set_value('login_password'),
+        'type'  => 'password'
+);
+$sign_in = array(
+	'name'	=> 'signIn',
+	'class'	=> 'button [tiny small large]',
+        'id'    => 'user_signin',
+        'value' => 'Sign In',
+        'type'  => 'submit'
+);
+
+?>
+
+<br>
+<div class="row">
+  <div class="large-3 columns"></div>
+  <div class="large-9 columns">
+  <div class="form-signin">
+      <?php echo form_open('log_in/sign_in',$form_attributes);?>
+      <h2 class="form-header">Sign In</h2>
+    <div class="large-12 columns">
+       <?php echo form_label('Email', 'login_email');
+             echo form_error('login_email'); 
+             echo form_input($email_input);?>
+    </div>
+    <div class="large-12 columns">
+       <?php echo form_label('Password', 'login_password');
+             echo form_error('login_password'); 
+             echo form_input($pass_input);?>
+    <p><?php echo anchor('log_in/forgot_password', 'forgot password?'); ?></p>
+    </div>
+      <div class="large-12 columns">
+       <?php echo form_submit($sign_in); ?>
+    </div>
+       <?php echo form_close();?>
+  </div>
+   </div>
+</div>
+<br>
+
+<!--End of file log_in.php 
+Location: ./system/application/forms/sign_in.php-->
