@@ -1,0 +1,87 @@
+<?php 
+$form_attributes = array(
+	'name'	=> 'createUser',
+        'id'    => 'createUser',
+	'class'	=> 'forms'
+);
+$user = array(
+	'name'	=> 'username',
+	'class'	=> 'error',
+        'id'    => 'username',
+        //'required' => 'required',
+        'value' => set_value('username'),
+        'type'  => 'text'
+);
+$email = array(
+	'name'	=> 'email',
+	'class'	=> 'error',
+        'id'    => 'email',
+        //'required' => 'required',
+        'value' => set_value('email'),
+        'type'  => 'text'
+);
+$password = array(
+	'name'	=> 'password',
+	'class'	=> 'error',
+        'id'    => 'password',
+        //'required' => 'required',
+        'value' => set_value('password'),
+        'type'  => 'text'
+);
+$repeat_pass = array(
+	'name'	=> 'repeat_password',
+	'class'	=> 'error',
+        'id'    => 'repeat_password',
+        //'required' => 'required',
+        'value' => set_value('repeat_password'),
+        'type'  => 'text'
+);
+/*$hidden_input = array(
+	'name'	=> '$this->security->get_csrf_token_name()',
+        'value' => '$this->security->get_csrf_hash()',
+        'type'  => 'hidden'
+);*/
+$get_userdata = array(
+	'name'	=> 'signUp',
+	'class'	=> 'button [tiny small large]',
+        'id'    => 'signUp',
+        'value' => 'Create your account',
+        'type'  => 'submit'
+);?>
+<br>
+<div class="row">
+  <div class="large-3 columns"></div>
+  <div class="large-9 columns">
+    <h2>Sign Up</h2>
+    <p>Please create your account!</p>
+    <?php echo form_open('log_in/create_user',$form_attributes);?> 
+  <div class="large-9 columns">
+    <?php echo form_label('Username', 'username');
+          echo form_error('username'); 
+          echo form_input($user );?>
+    </div>
+  <div class="large-9 columns">
+    <?php echo form_label('Email', 'email');
+          echo form_error('email');
+          echo form_input($email );?>
+  </div>
+  <div class="large-9 columns">
+   <?php echo form_label('Password', 'password');
+         echo form_error('password');
+         echo form_input($password );?>
+  </div>
+  <div class="large-9 columns">
+   <?php echo form_label('Repeat Password', 'repeat_password');
+         echo form_error('repeat_pass');
+         echo form_input($repeat_pass );?>
+  </div>
+  <div class="large-12 columns"><br>
+   <?php echo form_submit($get_userdata); ?>
+  </div>
+  <?php echo form_close();?>
+  </div>
+ </div>
+<br>
+
+<!--End of file create_user.php 
+    Location: ./system/application/forms/create_user.php-->
