@@ -1,0 +1,74 @@
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Brian Wilhite
+ * Config
+ * Back end validation
+ * 
+ */
+$config = array(
+              'createUser' => array(
+                          array(
+                              'field' => 'username',
+                              'label' => 'username',
+                              'rules' => 'required|min_length[7]'
+                               ),
+                          array(
+                              'field' => 'email',
+                              'label' => 'email',
+                              'rules' => 'required|valid_email'
+                               ),
+                          array(
+                              'field' => 'password',
+                              'label' => 'password',
+                              'rules' => 'required'
+                               ),
+                          array(
+                              'field' => 'repeat_password',
+                              'label' => 'repeat password',
+                              'rules' => 'required'
+                               )
+                  ),
+               'signIn' => array(
+                          array(
+                              'field' => 'login_email',
+                              'label' => 'email',
+                              'rules' => 'required'
+                               ),
+                          array(
+                              'field' => 'login_password',
+                              'label' => 'password',
+                              'rules' => 'required'
+                               )
+                   ),
+                'forgotPassword' => array(
+                          array(
+                              'field' => 'fetch_password',
+                              'label' => 'email',
+                              'rules' => 'required'
+                               )
+                    ),
+               'resetPassword' => array(
+                          array(
+                              'field' => 'old_password',
+                              'label' => 'repeat password',
+                              'rules' => 'required'
+                               ),
+                          array(
+                              'field' => 'new_password',
+                              'label' => 'repeat password',
+                              'rules' => 'required'
+                               ),
+                          array(
+                              'field' => 'repeat_new_password',
+                              'label' => 'Repeat new password',
+                              'rules' => 'required'
+                               )
+                          
+                  )
+              );             
+                                     
+  
+
+ 
+/* End of file form_validation.php */
+/* Location: ./application/config/form_validation.php */
