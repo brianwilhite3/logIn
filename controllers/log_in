@@ -1,0 +1,154 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+/**
+ * Brian Wilhite
+ * controller 
+ * Form pages
+ * 
+ */
+
+ 
+
+class Log_in extends CI_Controller{
+
+function __construct(){
+    session_start();
+    parent::__construct();
+    $this->load->model('Users');
+    
+}
+function index(){
+    $data = array(
+               'title' => 'Home Page'
+    );
+    $this->load->view('templates/header', $data);
+    $this->template->load('templates/template' , 'pages/home');
+}
+
+//Ajax is not working but will have a progress gif.
+function sign_in(){
+   
+ if ($this->form_validation->run('signIn') === FALSE){
+	     
+        $data = array(
+            'title' => 'Sign In!'
+        );
+        $this->load->view('templates/header', $data);
+        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+        $this->template->load('templates/template', 'forms/sign_in');
+           
+    }else{
+    $query = $this->Users->is_user($this->input->post('login_email'), $this->input->post('login_password'));
+            
+    if(!$query){
+        echo 'Email or Password did not match!';    
+        
+     }else{
+         $sess_data = array(
+            'email' => $this->input->post('email'),
+            'is_logged_in' => TRUE
+         );
+         $this->session->set_userdata($sess_data);
+         $this->user_logged_in();
+     }
+}
+}
+
+//sign_in.php     
+function create_user(){
+                
+  if($this->form_validation->run('createUser') === FALSE){
+                        
+        $data = array(
+            'title' => 'Create Your Account!'
+        );
+        $this->load->view('templates/header', $data);
+        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+        $this->template->load('templates/template' ,'forms/create_user');
+    }else{ 
+        $this->Users->user_information();
+        $sess_data = array(
+            'email' => $this->input->post('email'),
+            'is_logged_in' => TRUE
+        );
+        $this->session->set_userdata($sess_data);
+        $this->user_logged_in();     
+     }
+}
+
+//forgot_password will be in another controller
+function forgot_password(){
+     
+    if ($this->form_validation->run('forgotPassword') === FALSE){
+     
+        $data = array(
+            'title' => 'Forgot Password'
+        );
+        $this->load->view('templates/header', $data);
+        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+        $this->template->load('templates/template' ,'forms/forgot_password');
+     }else{
+         
+        // Send e-mail
+        $this->email->from('', '');
+        $this->email->to('$email'); 
+        //$this->email->cc('another@another-example.com'); 
+        //$this->email->bcc('them@their-example.com'); 
+
+        $this->email->subject('Forgot Password!');
+        $this->email->message($this->load->view('email/forgot_password_email'));	
+
+        $this->email->send();
+        echo $this->email->print_debugger();
+      }  
+}
+
+//reset_password will be in another controller
+function reset_password(){
+    
+    if ($this->form_validation->run('') === FALSE){
+    
+        $data = array(
+            'title' => 'Change Password'
+        );
+        $this->load->view('templates/header', $data);
+        $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+        $this->template->load('templates/template' ,'forms/reset_password');
+    }else{
+        
+        // Send e-mail
+        $this->email->from('', '');
+        $this->email->to('$email'); 
+        //$this->email->cc('another@another-example.com'); 
+        //$this->email->bcc('them@their-example.com'); 
+
+        $this->email->subject('Forgot Password!');
+        $this->email->message($this->load->view('email/forgot_password_email'));	
+
+        $this->email->send();
+        echo $this->email->print_debugger();
+        
+    }
+}
+function user_logged_in(){
+    
+    $data = array(
+        'title' => 'Welcome'
+    );
+    $this->load->view('templates/header', $data);
+    $this->template->load('Templates/template' , 'pages/logged_in');
+}
+function log_out(){
+    
+    $this->session->unset_userdata();
+    redirect(log_in);
+}
+
+
+}
+
+/* End of file log_in.php */
+/* Location: ./system/application/controllers/log_in.php */
+  
+
+ 
+ 
