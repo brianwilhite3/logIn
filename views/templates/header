@@ -1,0 +1,21 @@
+<?php echo doctype('html5'); ?>
+<html> 
+  <head> 
+  <title><?= $title ?></title>
+  <?php echo meta('Content-type', 'text/html; charset=utf-8', 'equiv'); ?>
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url().'css/foundation.css'  ?>"  />
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url().'css/style.css'  ?>"  />
+  
+  <?php echo script_tag('js/jquery-1.9.1.js' );?>
+  <?php echo script_tag('js/foundation.min.js' );?>
+  <?php echo script_tag('js/jquery.validate.min.js' );?>
+  <?php echo script_tag('js/jquery.mockjax.js' );?>
+  <?php echo script_tag('js/jquery.form.js' );?>
+  <?php echo script_tag('js/additional-methods.min.js' );?>
+  <?php echo script_tag('js/jquery.cookie.js' );?>
+  <?php echo script_tag('js/validation.js' );?>
+  
+  </head>
+
+  <!--End of header.php 
+  Location: ./system/application/templates/template.php-->
