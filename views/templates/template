@@ -1,0 +1,65 @@
+<body>
+<div class="row">
+  <div class="large-12 columns">
+      
+<nav class="top-bar docs-bar hide-for-small" data-topbar>
+  <ul class="title-area">
+    <li class="name">
+      <h1><a href=""</a>Sessions</h1>
+    </li>
+  </ul>
+
+  <section class="top-bar-section">
+    <ul class="right">
+      </li>
+      <li class="divider"></li>
+      <li class="">
+        <?php echo anchor('log_in', 'Home'); ?></li>  
+        
+      </li>
+      <li class="divider"></li>
+      <li class="">
+        <?php echo anchor('log_in/sign_in', 'Log In'); ?></li>
+        
+      </li>
+      <li class="divider"></li>
+      <li class="">
+        <?php echo anchor('log_in/create_user', 'Create an account'); ?></li>
+     </ul>
+      
+      
+    
+  </section>
+</nav>
+        <nav class="tab-bar show-for-small">
+  <a class="left-off-canvas-toggle menu-icon">
+    <span>Sessions</span>
+  </a>
+</nav>
+ 
+  
+    </div>
+
+</div>
+    <div id="status"></div>
+            
+            <?= $contents ?>
+
+
+
+<!-- Footer -->
+<footer class="row">
+    <div class="large-12 columns">
+      <hr>
+      <div class="row">
+        <div class="large-6 columns">
+          <p>Brian Wilhite.</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </body>
+  </html>
+  
+  <!--End of file template.php 
+  Location: ./system/application/templates/template.php-->
