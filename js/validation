@@ -1,0 +1,201 @@
+$(document).ready(function() {
+
+   
+$(".forms").validate({     // http://jqueryvalidation.org/validate/
+    
+    errorElement: "small",
+    errorClass: "error", 
+    
+    highlight: function(element, errorClass, validClass) {
+      $(element).addClass(errorClass).removeClass(validClass);
+      $(element.form).find("label[for=" + element.id + "]")
+        .addClass(errorClass);
+    },
+    unhighlight: function(element, errorClass, validClass) {
+      $(element).removeClass(errorClass).addClass(validClass);
+      $(element.form).find("label[for=" + element.id + "]")
+        .removeClass(errorClass);
+    },
+   rules: {
+    username: {
+      required: true,
+      minlength: 5,
+      maxlength: 20
+    },
+    email: {
+      required: true,
+      email: true
+    },
+    password: {
+      required: true,
+      minlength: 7
+    },
+    repeat_password: {
+      required: true,
+      minlength: 7,
+      equalTo: "#password"
+    },
+     login_email: {
+      required: true,
+      email: true
+     },
+     login_password: {
+      required: true,
+      minlength: 7
+     },
+     old_password: {
+      required: true,
+      minlength: 7
+     },
+     new_password: {
+      required: true,
+      minlength: 7
+     },
+     repeat_new_password: {
+      required: true,
+      minlength: 7,
+      equalTo: "#new_password"
+    },
+    fetch_password: {
+      required: true,
+      email: true
+    }
+  },
+  messages: {
+    username: { 
+      required:  "Please specify your username.",
+      minlength: jQuery.validator.format("At least {0} characters required!"),
+      maxlength: jQuery.validator.format("At least {0} characters required!")
+    },
+    email: {
+      required: "please specify your e-mail.",
+      email: "Your email address must be in the format of name@domain.com"
+    },
+    password:{
+      required: "Please specify your password.",
+      minlength: jQuery.validator.format("At least {0} characters required!")
+    },
+    repeat_password:{
+      required: "Please repeat your password.",
+      minlength: jQuery.validator.format("At least {0} characters required!")
+    },
+    login_email: {
+       required: "please specify your e-mail.",
+       email: "Your email address must be in the format of name@domain.com" 
+    },
+    login_password:{
+      required: "Please specify your password.",
+      minlength: jQuery.validator.format("At least {0} characters required!")
+    },
+    old_password:{
+      required: "Please specify the password you would like to change.",
+      minlength: jQuery.validator.format("At least {0} characters required!")
+    },
+    new_password:{
+      required: "Please specify your new password.",
+      minlength: jQuery.validator.format("At least {0} characters required!")
+    },
+    repeat_new_password: {
+      required: "Please repeat your new password.",
+      minlength: jQuery.validator.format("At least {0} characters required!")
+    },
+    fetch_password: {
+      required: "please specify your e-mail.",
+      email: "Your email address must be in the format of name@domain.com"  
+     }
+}
+});
+ 
+//This is the Ajax call for the validate API
+$(':input[name=""]').rules("add",
+{
+  "remote" :
+  {
+      url: '',
+      type: "post",
+      data:
+      {
+          emails: function()
+          {
+              return $('#register-form :input[name="email"]').val();
+          }
+      }
+  }
+});
+});
+
+ 
+ /*$.ajaxSetup({
+        data: {
+            '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'
+        }
+    });*/
+
+
+/*create_user.php   
+$("#signUp").click(function(e){
+ e.preventDefault();
+ var fields = {
+     username:        $('#username').val(),
+     email:           $('#email').val(),
+     password:        $('#password').val(),
+     repeat_password: $('#repeat_password').val(),
+     ajax : '1'
+ };
+ $.ajax({
+    type:          'POST',
+    url:           "<?php echo site_url('log_in/sign_in') ?>",
+    data:          fields,
+    beforeSend: function(){
+        // Code to display spinner
+        $('<div id="submitted"><div id="load"><?php echo img("images/loading.gif")?></div></div>').appendTo('body');
+        $('#submitted').show();
+        alert("fuck");
+    },
+    complete:   function(){
+        // Code to hide spinner.
+        $('#submitted').hide();
+        alert("you");
+    },
+    fail:       function(textStatus, errorThrown){
+                    console.log("request failed...  " + textStatus + ". " + errorThrown);
+    }
+    
+  });
+  form.submit();
+});
+
+//signin.php    
+/*$("#user_signin").click(function(e) {
+e.preventDefault();
+ var fields = {
+     login_email:    $('#login_email').val(),
+     login_password: $('#login_password').val()
+ };
+ $('input').attr("disabled", "disabled");
+ $('#submitted').show();
+ $.ajax({
+    url:         $('#signIn').attr('action'),
+    type:        $('#signIn').attr('method'),
+    dataType:    'json',
+    data:        fields,
+    complete: (function (){
+              //show process
+              setTimeout(function(){
+                $('input').removeAttr("disabled");
+                $('#submitted').hide();
+              },5500);
+}).done
+    
+    //message console input
+    //console.log("request success...");
+    
+}).fail(function( jqXHR, textStatus, errorThrown){
+      console.log("request failed...  " + textStatus + ". " + errorThrown);
+});
+});*/
+
+
+
+
+  
