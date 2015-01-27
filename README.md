@@ -1,4 +1,4 @@
-<h1>logIn</h1>
+logIn
 =====
 
 <p>LogIn built with Foundation 5. Front validation uses jQuery Validation Plugin inside the CodeIgniter framework.</p><BR>
