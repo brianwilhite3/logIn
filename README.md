@@ -1,4 +1,4 @@
-logIn
+LogIn
 =====
 
 <p>LogIn with Foundation 5 and uses the jQuery Validation Plugin inside the CodeIgniter framework.</p><BR>
