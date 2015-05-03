@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
    
-$(".forms").validate({     // http://jqueryvalidation.org/validate/
+$(form).validate({     // http://jqueryvalidation.org/validate/
     
     errorElement: "small",
     errorClass: "error", 
@@ -16,7 +16,9 @@ $(".forms").validate({     // http://jqueryvalidation.org/validate/
       $(element.form).find("label[for=" + element.id + "]")
         .removeClass(errorClass);
     },
-   rules: {
+   
+   //validation rules      
+  rules: {
     username: {
       required: true,
       minlength: 5,
@@ -61,7 +63,9 @@ $(".forms").validate({     // http://jqueryvalidation.org/validate/
       email: true
     }
   },
-  messages: {
+ 
+ //validation messages 
+ messages: {
     username: { 
       required:  "Please specify your username.",
       minlength: jQuery.validator.format("At least {0} characters required!"),
@@ -103,99 +107,30 @@ $(".forms").validate({     // http://jqueryvalidation.org/validate/
       required: "please specify your e-mail.",
       email: "Your email address must be in the format of name@domain.com"  
      }
-}
-});
+     
+  },  
  
-//This is the Ajax call for the validate API
-$(':input[name=""]').rules("add",
-{
-  "remote" :
-  {
-      url: '',
-      type: "post",
-      data:
-      {
-          emails: function()
-          {
-              return $('#register-form :input[name="email"]').val();
-          }
-      }
-  }
-});
-});
+//submit handler        
+submitHandler: function(form){
 
+var queryString = $('#createUser').formSerialize(); 
+  
+    $.ajax({
+        type:          $('#createUser').attr('method'),
+        url:           $('#createUser').attr('action'),
+        dataType:      'json',
+        data:          queryString
+        })
+     
+  $(form).ajaxSubmit();
+  return false;
+}
+ });    
+}); 
  
+
  /*$.ajaxSetup({
         data: {
             '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'
         }
     });*/
-
-
-/*create_user.php   
-$("#signUp").click(function(e){
- e.preventDefault();
- var fields = {
-     username:        $('#username').val(),
-     email:           $('#email').val(),
-     password:        $('#password').val(),
-     repeat_password: $('#repeat_password').val(),
-     ajax : '1'
- };
- $.ajax({
-    type:          'POST',
-    url:           "<?php echo site_url('log_in/sign_in') ?>",
-    data:          fields,
-    beforeSend: function(){
-        // Code to display spinner
-        $('<div id="submitted"><div id="load"><?php echo img("images/loading.gif")?></div></div>').appendTo('body');
-        $('#submitted').show();
-        alert("fuck");
-    },
-    complete:   function(){
-        // Code to hide spinner.
-        $('#submitted').hide();
-        alert("you");
-    },
-    fail:       function(textStatus, errorThrown){
-                    console.log("request failed...  " + textStatus + ". " + errorThrown);
-    }
-    
-  });
-  form.submit();
-});
-
-//signin.php    
-/*$("#user_signin").click(function(e) {
-e.preventDefault();
- var fields = {
-     login_email:    $('#login_email').val(),
-     login_password: $('#login_password').val()
- };
- $('input').attr("disabled", "disabled");
- $('#submitted').show();
- $.ajax({
-    url:         $('#signIn').attr('action'),
-    type:        $('#signIn').attr('method'),
-    dataType:    'json',
-    data:        fields,
-    complete: (function (){
-              //show process
-              setTimeout(function(){
-                $('input').removeAttr("disabled");
-                $('#submitted').hide();
-              },5500);
-}).done
-    
-    //message console input
-    //console.log("request success...");
-    
-}).fail(function( jqXHR, textStatus, errorThrown){
-      console.log("request failed...  " + textStatus + ". " + errorThrown);
-});
-});*/
-
-
-
-
-  
